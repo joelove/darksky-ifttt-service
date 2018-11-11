@@ -1,14 +1,17 @@
 import bodyParser from 'body-parser';
 import express from 'express';
-import logger from './logger';
+
+import logger from './services/logger';
+import pollingService from './services/polling-service';
 
 import defaultRoute from './routes/default';
 
-const appName = 'Node API';
+const appName = 'IFTTT Service';
 const app = express();
-const port = process.env.PORT || 5555;
+const port = process.env.PORT || 443;
 
 app.use(bodyParser.json());
+
 app.get('/', defaultRoute);
 
 if (process.env.NODE_ENV !== 'test') {
@@ -16,5 +19,7 @@ if (process.env.NODE_ENV !== 'test') {
     logger.info(`${appName} listening on port ${port}...`);
   });
 }
+
+pollingService.start();
 
 export default app;
