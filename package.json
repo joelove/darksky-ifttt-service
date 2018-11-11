@@ -2,14 +2,19 @@
   "name": "darksky-ifttt-service",
   "version": "0.1.0",
   "description": "An IFTTT Service for creating weather-based triggers from the Dark Sky API",
-  "main": "entrypoint.js",
+  "main": "dist/index.js",
+  "engines": {
+    "node": "10.0.0",
+    "npm": "5.6.0"
+  },
   "scripts": {
     "test": "NODE_ENV=test mocha --compilers js:@babel/register --recursive",
     "build": "babel --optional runtime -d dist/ app/",
     "start": "node entrypoint.js",
     "postinstall": "npm run migrate",
     "migrate": "knex migrate:latest",
-    "lint": "eslint app/ test/"
+    "lint": "eslint app/ test/",
+    "heroku-postbuild": "npm install --production; npm run build"
   },
   "repository": {
     "type": "git",
