@@ -5,7 +5,7 @@ import app from '../app';
 import Bookshelf from '../app/database';
 import seed from './seeds/seed';
 
-const knex = Bookshelf.knex;
+const { knex } = Bookshelf;
 
 beforeEach(() => knexCleaner
   .clean(knex)
