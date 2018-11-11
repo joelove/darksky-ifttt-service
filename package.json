@@ -1,7 +1,7 @@
 {
-  "name": "node-api",
+  "name": "darksky-ifttt-service",
   "version": "0.1.0",
-  "description": "An ultra-lightwight API framework using Express.js",
+  "description": "An IFTTT Service for creating weather-based triggers from the Dark Sky API",
   "main": "entrypoint.js",
   "scripts": {
     "test": "NODE_ENV=test mocha --compilers js:babel-core/register --recursive",
@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/joelove/node-api.git"
+    "url": "git+ssh://git@github.com/joelove/darksky-ifttt-service.git"
   },
   "author": "Joe Love",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/joelove/node-api/issues"
+    "url": "https://github.com/joelove/darksky-ifttt-service/issues"
   },
-  "homepage": "https://github.com/joelove/node-api#readme",
+  "homepage": "https://github.com/joelove/darksky-ifttt-service#readme",
   "dependencies": {
     "babel-register": "^6.7.2",
     "bluebird": "^3.3.4",
