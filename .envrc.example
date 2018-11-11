@@ -2,3 +2,4 @@ export PORT=5555
 export NODE_ENV=development
 export DATABASE_URL=postgres://$USER:@localhost:5432/darksky-ifttt-service
 export TEST_DATABASE_URL=postgres://$USER:@localhost:5432/darksky-ifttt-service-test
+export DARKSKY_API_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
