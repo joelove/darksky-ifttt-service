@@ -4,7 +4,7 @@ import express from 'express';
 import logger from './services/logger';
 import pollingService from './services/polling-service';
 
-import defaultRoute from './routes/default';
+import rainTrigger from './triggers/rain-trigger';
 
 const appName = 'IFTTT Service';
 const app = express();
@@ -12,7 +12,7 @@ const port = process.env.PORT || 443;
 
 app.use(bodyParser.json());
 
-app.get('/', defaultRoute);
+app.get('/ifttt/v1/triggers/rain', rainTrigger);
 
 if (process.env.NODE_ENV !== 'test') {
   app.listen(port, () => {

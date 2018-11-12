@@ -1,5 +1,5 @@
 import uuid from 'node-uuid';
 
 export default Factory => Factory
-  .define('sample')
+  .define('minute')
   .attr('id', () => uuid.v4());
