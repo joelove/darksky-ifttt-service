@@ -1,8 +1,9 @@
-import { join } from 'ramda';
+import { join, pipe, forEach } from 'ramda';
 import { stringify } from 'qs';
 import https from 'https';
 
 import logger from './logger';
+import Minute from '../models/Minute';
 
 const joinByComma = join(',');
 const joinBySlash = join('/');
@@ -31,16 +32,30 @@ const payload = {
 };
 
 const handleFailure = () => {
-  logger.error(`Failed ${host + endpoint}`);
+  logger.error('REQUEST FAILURE', host + endpoint);
 };
 
-const handleSuccess = () => {
-  logger.info(`Success ${host + endpoint}`);
-  // TODO: Store request response in database
+const storeMinute = (minute) => {
+  logger.info('STORE MINUTE', minute.time);
+
+  Minute
+    .forge(minute)
+    .where({ time: minute.time })
+    .upsert(minute);
 };
+
+const storeMinutes = forEach(storeMinute);
+
+const storeResult = ({ minutely }) => {
+  logger.info('REQUEST SUCCESS', host + endpoint);
+
+  storeMinutes(minutely.data);
+};
+
+const handleSuccess = pipe(JSON.parse, storeResult);
 
 const handleRequest = (response) => {
-  let content = ';';
+  let content = '';
 
   response.on('data', (chunk) => {
     content += chunk;
@@ -52,7 +67,7 @@ const handleRequest = (response) => {
 };
 
 const makeRequest = () => {
-  logger.info(`Request ${host + endpoint}`);
+  logger.info('REQUEST BEGIN', host + endpoint);
 
   https
     .request(payload, handleRequest)
@@ -61,7 +76,7 @@ const makeRequest = () => {
 };
 
 const start = () => {
-  logger.info(`Begin polling ${host + endpoint} (every ${requestInterval / 1000} seconds)`);
+  logger.info('BEGIN POLLING', `${host + endpoint} (every ${requestInterval / 1000} seconds)`);
 
   setInterval(makeRequest, requestInterval);
 };

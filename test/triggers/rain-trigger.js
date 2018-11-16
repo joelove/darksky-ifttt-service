@@ -6,7 +6,7 @@ import Minute from '../../app/models/Minute';
 
 const server = supertest(app.listen());
 
-context('GET /', () => {
+context('GET /ifttt/v1/triggers/rain', () => {
   let request;
 
   beforeEach(() => {

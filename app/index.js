@@ -18,8 +18,8 @@ if (process.env.NODE_ENV !== 'test') {
   app.listen(port, () => {
     logger.info(`${appName} listening on port ${port}...`);
   });
-}
 
-pollingService.start();
+  pollingService.start();
+}
 
 export default app;
