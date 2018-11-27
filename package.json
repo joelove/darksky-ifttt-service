@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "engines": {
     "node": "10.0.0",
-    "npm": "5.6.0"
+    "npm": "5.8.0"
   },
   "scripts": {
     "test": "NODE_ENV=test mocha --compilers js:@babel/register --recursive",
@@ -30,10 +30,14 @@
     "bluebird": "^3.3.4",
     "body-parser": "^1.15.0",
     "bookshelf": "^0.9.2",
+    "bookshelf-upsert": "^0.2.0",
+    "bookshelf-uuid": "^1.0.0",
     "express": "^4.13.4",
     "knex": "^0.10.0",
     "lodash": "^4.6.1",
-    "pg": "^4.5.1"
+    "pg": "^4.5.1",
+    "qs": "^6.5.2",
+    "ramda": "^0.25.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.5",
